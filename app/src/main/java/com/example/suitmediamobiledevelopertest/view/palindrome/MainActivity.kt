@@ -2,9 +2,9 @@ package com.example.suitmediamobiledevelopertest.view.palindrome
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
@@ -16,6 +16,7 @@ import com.example.suitmediamobiledevelopertest.view.ViewModelFactory
 import com.example.suitmediamobiledevelopertest.view.welcome.WelcomeActivity
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
+
 class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
     private lateinit var binding: ActivityMainBinding
@@ -33,15 +34,15 @@ class MainActivity : AppCompatActivity() {
     private fun setupViewModel() {
         viewModel = ViewModelProvider(
             this,
-            ViewModelFactory(Preference.getInstance(dataStore))
+            ViewModelFactory(Preference.getInstance(dataStore), this)
         )[MainViewModel::class.java]
     }
 
     private fun setupAction() {
         binding.nextButton.setOnClickListener {
             val user = binding.userEditText.text.toString()
-            if (user.isNullOrBlank()){
-                    binding.userEditTextLayout.error = getString(R.string.insert_name)
+            if (user.isBlank()) {
+                binding.userEditTextLayout.error = getString(R.string.insert_name)
             } else {
                 viewModel.saveUser(user)
                 val intent = Intent(this, WelcomeActivity::class.java)

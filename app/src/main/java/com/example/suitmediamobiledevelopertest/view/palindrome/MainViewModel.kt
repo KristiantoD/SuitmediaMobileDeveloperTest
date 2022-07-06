@@ -13,20 +13,20 @@ class MainViewModel(private val pref: Preference) : ViewModel() {
         }
     }
 
-    fun checkPalindrome(sentence: String): Boolean{
+    fun checkPalindrome(sentence: String): Boolean {
         var cleanSentence = ""
         for (i in sentence) {
-            if (i.isLetterOrDigit()){
-                cleanSentence+=i.lowercaseChar()
+            if (i.isLetterOrDigit()) {
+                cleanSentence += i.lowercaseChar()
             }
         }
 
         var reverse = ""
-        for(i in (cleanSentence.length - 1) downTo 0){
-            reverse+=cleanSentence[i]
+        for (i in (cleanSentence.length - 1) downTo 0) {
+            reverse += cleanSentence[i]
         }
 
-        if(cleanSentence.equals(reverse)){
+        if (cleanSentence == reverse) {
             return true
         }
         return false

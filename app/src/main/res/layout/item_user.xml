@@ -46,7 +46,7 @@
             tools:text="@string/name" />
 
         <TextView
-            android:id="@+id/tv_item_summary"
+            android:id="@+id/tv_item_email"
             android:layout_width="0dp"
             android:layout_height="25dp"
             android:layout_marginStart="16dp"
